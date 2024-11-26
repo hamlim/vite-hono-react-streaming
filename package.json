@@ -1,0 +1,20 @@
+{
+  "name": "vite-hono-react-streaming",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "typescript": "5.7.2",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+  },
+  "peerDependencies": {},
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "@vitejs/plugin-react-swc": "^3.7.2",
+    "hono": "^4.6.12",
+    "react": "^0.0.0-experimental-7670501b-20241124",
+    "react-dom": "^0.0.0-experimental-7670501b-20241124",
+    "react-server-dom-webpack": "^0.0.0-experimental-7670501b-20241124",
+    "vite": "^6.0.0"
+  }
+}
