@@ -1,5 +1,7 @@
 import rdc from "react-dom/client";
-import App from "./app";
+import { App } from "./app";
+
+console.log("client entry");
 
 let { hydrateRoot } = rdc;
 

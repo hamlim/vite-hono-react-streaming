@@ -1,9 +1,9 @@
 import { serve } from "@hono/node-server";
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
+// import react from "@vitejs/plugin-react-swc";
 import { Hono } from "hono";
 import { stream as streamResponse } from "hono/streaming";
 import { createServer as createViteServer } from "vite";
-// import react from '@vitejs/plugin-react';
 
 let server = await createViteServer({
   server: { middlewareMode: true },
@@ -19,11 +19,20 @@ const environment = server.environments.server;
 const app = new Hono();
 
 app.use(async (c, next) => {
+  const viteDevMiddleware = () =>
+    new Promise((resolve) => {
+      server.middlewares(c.env.incoming, c.env.outgoing, () => resolve());
+    });
+  await viteDevMiddleware();
   await next();
-  return server.middlewares(c.env.incoming, c.env.outgoing, () => {});
 });
 
 app.use("*", async function handler(context, next) {
+  // Check if response has already started
+  if (context.res.writableEnded) {
+    return;
+  }
+
   // only render the app for html requests
   if (context.req.header("accept").includes("text/html")) {
     const { render } = await environment.runner.import(

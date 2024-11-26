@@ -2,7 +2,7 @@ import rds from "react-dom/server.browser";
 
 let { renderToReadableStream } = rds;
 
-import App from "./app";
+import { App } from "./app";
 
 export async function render({ context, stream }) {
   let pipeable = await renderToReadableStream(<App req={context.req.raw} />, {
