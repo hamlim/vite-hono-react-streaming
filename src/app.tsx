@@ -1,12 +1,6 @@
-import { useEffect } from "react";
 import { cleanHeaders } from "./safe-headers";
 
-export function App({ req }) {
-  //   console.log(req);
-
-  useEffect(() => {
-    console.log(req.url);
-  }, []);
+export function App({ req }: { req: Request }) {
   return (
     <html lang="en">
       <head>
